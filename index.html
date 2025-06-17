@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pooja.exe</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      background-color: #0f0f0f;
+      color: #00ff88;
+      overflow-x: hidden;
+      transition: background 0.5s, color 0.5s;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+      max-width: 100%;
+    }
+
+    .terminal {
+      background-color: #111;
+      border: 2px solid #00ff88;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 10px #00ff88;
+    }
+
+    .typed-text {
+      font-size: 1.5rem;
+      white-space: pre-wrap;
+      min-height: 100px;
+      font-weight: bold;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      background-color: #00ff88;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    button {
+      background: none;
+      border: 2px solid #00ff88;
+      padding: 10px 20px;
+      font-size: 1rem;
+      color: #00ff88;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+      margin: 10px;
+    }
+
+    button:hover {
+      background-color: #00ff88;
+      color: #000;
+    }
+
+    .swiper {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      margin: auto;
+      padding: 20px 0;
+    }
+
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      max-width: 90vw;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #00ff88;
+    }
+
+    .secret, .video, .chat-box {
+      margin-top: 30px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      color: #00ff88;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: #111;
+      padding: 20px;
+      border: 2px solid #00ff88;
+      border-radius: 10px;
+    }
+
+    .chat-box {
+      background: #1a1a1a;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: auto;
+      text-align: left;
+      padding: 15px;
+    }
+
+    .chat-msg {
+      background: #00ff8850;
+      padding: 8px 12px;
+      border-radius: 10px;
+      margin: 5px 0;
+    }
+
+    @media screen and (max-width: 600px) {
+      .typed-text { font-size: 1.2rem; }
+      button { font-size: 0.9rem; padding: 8px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <audio id="bg-music" src="bday.mp3" autoplay loop></audio>
+
+  <div class="container">
+    <div class="terminal">
+      <p class="typed-text"></p>
+      <span class="cursor">|</span>
+    </div>
+
+    <button id="music-toggle">🔇 Mute</button>
+    <button onclick="document.getElementById('modal').style.display='flex'">😊 Read Letter</button>
+    <button id="theme-toggle">🌗 Theme</button>
+
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="2.jpg" alt="Memory 1"></div>
+        <div class="swiper-slide"><img src="1.jpg" alt="Memory 2"></div>
+      </div>
+    </div>
+
+
+    <div class="chat-box">
+      <div class="chat-msg">👨 : echo "Hello, Karthi! 🎂"</div>
+      <div class="chat-msg">👨 : echo "You're the best bug-free friend I've ever had."</div>
+    </div>
+
+    <div class="secret">
+      <h2>🌟 You’re the Best Part of This Code 🌟</h2>
+      <p>// Every line, every click — all made with care for you</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal" onclick="this.style.display='none'">
+    <div class="modal-content">
+      <h2>Dear Karthi </h2>
+      <p>You’ve been a beautiful part of this journey. I made this page to remind you how much you mean — digitally and truly. 💖</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const text = 'Hey Karthi 💫\n\nSurprise! 🎉\nThis little site is just for you,\nSwipe through the memories, enjoy the music, and smile — you deserve it all! ❤️ \n Wishing you a many more Happy Returns of the day!!!' ;
+    const typedText = document.querySelector(".typed-text");
+    const music = document.getElementById("bg-music");
+    const musicToggle = document.getElementById("music-toggle");
+    const themeToggle = document.getElementById("theme-toggle");
+    let i = 0;
+
+    function typeLine() {
+      if (i < text.length) {
+        typedText.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeLine, 40);
+      }
+    }
+
+    typeLine();
+
+    musicToggle.addEventListener("click", () => {
+      if (music.paused) {
+        music.play();
+        musicToggle.textContent = "🔇 Mute";
+      } else {
+        music.pause();
+        musicToggle.textContent = "🔊 Play";
+      }
+    });
+
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("light-theme");
+      document.body.style.backgroundColor = document.body.classList.contains("light-theme") ? "#fff" : "#0f0f0f";
+      document.body.style.color = document.body.classList.contains("light-theme") ? "#000" : "#00ff88";
+    });
+
+    const swiper = new Swiper(".mySwiper", {
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+      },
+    });
+
+    window.onload = () => {
+      confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
+    };
+  </script>
+</body>
+</html>
