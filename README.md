@@ -1,4 +1,5 @@
 # 🎉 Karthi.exe - A Surprise Birthday Website
+site: https://psycho2me.github.io/karthi.io/
 
 Welcome to **Karthi.exe** — a custom-crafted website made with 💖 for Karthi's special day!
 
